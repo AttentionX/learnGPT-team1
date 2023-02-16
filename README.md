@@ -5,7 +5,7 @@
 ### BPE tokenization?
 
 - how does BPE work?
-- explain how it works by referencing the A-shaped graph
+- explain how it works by accounting for the A-shaped graph
 - how is this better than character-level tokenization?
 
 ### `test_1.py`?
