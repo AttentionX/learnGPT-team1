@@ -22,5 +22,13 @@ class LayerNorm(torch.nn.Module):
         :return: (B, T, C)
         """
         # --- TODO 3-1 --- #
-        raise NotImplementedError
+        mean = x.mean(dim=-1, keepdim=True)
+        var = ((x - mean) ** 2).mean(dim=-1, keepdim=True)
+        std = (var + self.eps).sqrt()
+        y = (x - mean) / std
+        if self.gamma is not None:
+            y *= self.gamma
+        if self.beta is not None:
+            y += self.beta
+        return y
         # ---------------- #
