@@ -14,10 +14,9 @@ class BlockVer4(BlockVer3):
     def __init__(self, head: Union[MultiHeadVer1, MultiHeadVer2], embed_size: int, dropout: float):
         super().__init__(head, embed_size)
         # --- TODO 4 --- #
-        self.dropout = torch.nn.Dropout(dropout)
-        self.head = self.dropout(head())
-        self.ffwd = self.dropout(FeedForward())
+        self.head = torch.nn.Sequential(head,torch.nn.Dropout(dropout))
+        self.ffwd = torch.nn.Sequential(FeedForward(embed_size),torch.nn.Dropout(dropout))
        
-    
+
         # -------------- #
   
